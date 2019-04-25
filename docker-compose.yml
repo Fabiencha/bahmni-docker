@@ -1,23 +1,41 @@
 services:
+<<<<<<< HEAD
   bahmni-proxy:
     build: bahmni-proxy/
+=======
+  apache:
+    image: "bahmni-proxy"
+>>>>>>> BAH-783: Add Apache reverse proxy (#5)
     networks:
       bahmni:
         aliases:
           - bahmni-proxy
     ports:
       - "80:80"
+<<<<<<< HEAD
     volumes:
       - "./bahmni-proxy/confs:/usr/local/apache2/conf/extra"
 
   OpenMRS-tomcat:
     depends_on:
       - OpenMRS-mysql
+=======
+    restart: always
+    volumes:
+      - "./bahmni-proxy/confs:/usr/local/apache2/conf/extra"
+  openmrs-referenceapplication:
+    depends_on:
+      - openmrs-referenceapplication-mysql
+>>>>>>> BAH-783: Add Apache reverse proxy (#5)
     environment:
       DB_AUTO_UPDATE: "true"
       DB_CREATE_TABLES: "true"
       DB_DATABASE: "${MYSQL_DB:-openmrs}"
+<<<<<<< HEAD
       DB_HOST: OpenMRS-mysql
+=======
+      DB_HOST: openmrs-referenceapplication-mysql
+>>>>>>> BAH-783: Add Apache reverse proxy (#5)
       DB_PASSWORD: "${MYSQL_PASSWORD:-Admin123}"
       DB_USERNAME: "${MYSQL_USER:-openmrs}"
       MODULE_WEB_ADMIN: "true"
@@ -33,6 +51,7 @@ services:
       bahmni:
         aliases:
           - openmrs-1
+<<<<<<< HEAD
     volumes:
       - "OpenMRS-tomcat-data:/usr/local/tomcat/.OpenMRS/"
       - "${OPENMRS_MODULES_PATH}:/usr/local/tomcat/.OpenMRS/modules/"
@@ -50,6 +69,14 @@ services:
       - "./bahmniapps/confs:/usr/local/apache2/conf/extra"
 
   OpenMRS-mysql:
+=======
+    restart: always
+    volumes:
+      - "openmrs-referenceapplication-data:/usr/local/tomcat/.OpenMRS/"
+      - /usr/local/tomcat/.OpenMRS/modules/
+      - /usr/local/tomcat/.OpenMRS/owa/
+  openmrs-referenceapplication-mysql:
+>>>>>>> BAH-783: Add Apache reverse proxy (#5)
     command: "mysqld --character-set-server=utf8 --collation-server=utf8_general_ci"
     environment:
       MYSQL_DATABASE: "${MYSQL_DB:-openmrs}"
@@ -63,11 +90,21 @@ services:
       bahmni:
         aliases:
           - openmrs-db
+<<<<<<< HEAD
     volumes:
       - "OpenMRS-mysql-data:/var/lib/mysql"
 version: "2.1"
 volumes:
   OpenMRS-tomcat-data: ~
   OpenMRS-mysql-data: ~
+=======
+    restart: always
+    volumes:
+      - "openmrs-referenceapplication-mysql-data:/var/lib/mysql"
+version: "2.1"
+volumes:
+  openmrs-referenceapplication-data: ~
+  openmrs-referenceapplication-mysql-data: ~
+>>>>>>> BAH-783: Add Apache reverse proxy (#5)
 networks:
   bahmni:
