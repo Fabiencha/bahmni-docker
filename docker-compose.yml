@@ -73,7 +73,7 @@ services:
     restart: always
     volumes:
       - "openmrs-referenceapplication-data:/usr/local/tomcat/.OpenMRS/"
-      - /usr/local/tomcat/.OpenMRS/modules/
+      - "${OPENMRS_MODULES_PATH}:/usr/local/tomcat/.OpenMRS/modules/"
       - /usr/local/tomcat/.OpenMRS/owa/
   openmrs-referenceapplication-mysql:
 >>>>>>> BAH-783: Add Apache reverse proxy (#5)
