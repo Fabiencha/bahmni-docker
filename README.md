@@ -15,6 +15,15 @@ git clone https://github.com/mekomsolutions/bahmni-docker
 cd bahmni-docker
 ```
 
+<<<<<<< HEAD
+=======
+**Export the variable beforehand:**
+```
+export OPENMRS_MODULES_PATH="/path/to/the/openmrs/modules"
+export BAHMNI_CONFIG_PATH="/path/to/the/bahmni/config"
+```
+
+>>>>>>> 5e0ad19... BAH-786: Add Bahmni Config component (#10)
 **Build the components:**
 
 - Bahmni Proxy
