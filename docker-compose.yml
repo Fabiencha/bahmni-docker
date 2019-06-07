@@ -10,9 +10,7 @@ services:
     volumes:
       - "./bahmni-proxy/confs:/usr/local/apache2/conf/extra"
 
-<<<<<<< HEAD
   OpenMRS-tomcat:
-=======
   bahmniapps:
     build: bahmniapps/
     networks:
@@ -30,7 +28,6 @@ services:
       - "${BAHMNI_CONFIG_PATH}:/var/www/bahmni_config"
 
   openmrs-tomcat:
->>>>>>> 5e0ad19... BAH-786: Add Bahmni Config component (#10)
     depends_on:
       - OpenMRS-mysql
     environment:
